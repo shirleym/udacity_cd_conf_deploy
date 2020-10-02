@@ -11,11 +11,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update ansible # install the dependencies needed for your playbook
+            apk add --update ansible && apk add openssh # install the dependencies needed for your playbook
       - run:
           name: Fix host authenticity for inventory
           command: |
-            ssh-keyscan -i inventory >> ~/.ssh/known_hosts
+            ssh-keyscan 54.184.14.27 >> ~/.ssh/known_hosts
       - run:
           name: Configure server
           command: |
