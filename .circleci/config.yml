@@ -13,6 +13,10 @@ jobs:
           command: |
             apk add --update ansible # install the dependencies needed for your playbook
       - run:
+          name: Fix host authenticity for inventory
+          command: |
+            ssh-keyscan -i inventory >> ~/.ssh/known_hosts
+      - run:
           name: Configure server
           command: |
             ansible-playbook -i inventory main-remote.yml
